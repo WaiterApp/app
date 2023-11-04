@@ -21,6 +21,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class CodigoRestaurante extends AppCompatActivity {
 
     protected EditText boxCodigo, boxMesa;
@@ -29,6 +31,8 @@ public class CodigoRestaurante extends AppCompatActivity {
     private Intent pasarPantalla;
     private String codigoRestaurante;
     private String mesa;
+    protected Restaurante restaurante;
+    protected ArrayList<Restaurante> restaurantes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,21 +46,76 @@ public class CodigoRestaurante extends AppCompatActivity {
         buttonEntrar = findViewById(R.id.button_entrar_codigoactivity);
         buttonQR = findViewById(R.id.button_qr_codigoactivity);
 
+        // Instanciar el RequestQueue.
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        // String url ="http://192.168.1.133/App2/read.php"; //localhost XAMPP
+        String url = "https://waiterappsite.000webhostapp.com//readRestaurante.php"; // 000webhost
+
+        // Solicitar respuesta de tipo String de la URL proporcionada.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            // Crear JSON array con la respuesta del servidor
+                            JSONArray jsonArray = new JSONArray(response);
+                            // Instanciar restaurante
+                            restaurante = new Restaurante();
+
+                            // Iterar por cada elemento del array
+                            for(int i=0;i<jsonArray.length();i++){
+                                // Obtener un jsonobject de cada elemento del array
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                                restaurante.setIdRestaurante(jsonObject.getInt("id")); // Asignar el id al atributo idRestaurante del objeto restaurante
+                                restaurante.setNombre(jsonObject.getString("nombre")); // Asignar el nombre al atributo nombre del objeto restaurante
+                                restaurante.setDireccion(jsonObject.getString("direccion")); // Etc ...
+                                restaurante.setCodigoPostal(jsonObject.getInt("codigo_postal"));
+                                restaurante.setRazonSocial(jsonObject.getString("razon_social"));
+                                restaurante.setEmail(jsonObject.getString("email"));
+                                restaurante.setSitioWeb(jsonObject.getString("sitio_web"));
+                                restaurante.setContactoNombre(jsonObject.getString("contacto_nombre"));
+                                restaurante.setTelefono(jsonObject.getInt("telefono"));
+                                restaurante.setCodigoRestaurante(jsonObject.getString("codigo_restaurante"));
+
+                                // Añadir el objeto restaurante a la lista de restaurantes
+                                restaurantes.add(restaurante);
+                            }
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(CodigoRestaurante.this, "No existe ningún restaurante", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Añadir request a la RequestQueue.
+        queue.add(stringRequest);
+
         buttonEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 codigoRestaurante = boxCodigo.getText().toString();
 
-                if (codigoRestaurante.equals("Pilar2023")) {
+                for (Restaurante restaurante : restaurantes)
+                {
+                    if (codigoRestaurante.equalsIgnoreCase(restaurante.getCodigoRestaurante())) {
 
-                    pasarPantalla = new Intent(CodigoRestaurante.this, RestaurantePilar.class);
-                    finish();
-                    startActivity(pasarPantalla);
+                        pasarPantalla = new Intent(CodigoRestaurante.this, RestauranteActivity.class);
+                        finish();
+                        startActivity(pasarPantalla);
 
-                } else {
-                    Toast.makeText(CodigoRestaurante.this, "Código de restaurante erróneo", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(CodigoRestaurante.this, "Código de restaurante erróneo", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
+
 
             }
 
