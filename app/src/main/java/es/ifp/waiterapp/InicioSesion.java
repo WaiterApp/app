@@ -28,6 +28,16 @@ public class InicioSesion extends AppCompatActivity {
         btn_registro = findViewById(R.id.button_registro_iniciosesion);
         btn_continuarSinS = findViewById(R.id.button_noinicio_iniciosesion);
 
+        // Ir a la actividad Registro
+        btn_registro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pasarPantalla = new Intent(InicioSesion.this, Registro.class);
+                finish();
+                startActivity(pasarPantalla);
+            }
+        });
+
         // Ir a la actividad CodigoRestaurante si se elige continuar sin iniciar sesión
         btn_continuarSinS.setOnClickListener(new View.OnClickListener() {
             @Override
