@@ -24,8 +24,9 @@ public class MainActivity extends AppCompatActivity {
         TimerTask tt = new TimerTask() {
             @Override
             public void run() {
+               
+                pasarPantalla = new Intent(MainActivity.this, InicioSesion.class);
 
-                pasarPantalla = new Intent(MainActivity.this, CodigoRestaurante.class);
                 finish();
                 startActivity(pasarPantalla);
 

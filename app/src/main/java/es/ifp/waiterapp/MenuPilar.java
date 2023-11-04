@@ -6,17 +6,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 public class MenuPilar extends AppCompatActivity {
 
-    protected Button buttonAgua;
-    protected Button buttonCola;
-    protected Button buttonHamburguesa;
-    protected Button buttonBocata;
-    protected Button buttonHelado;
-    protected Button buttonFlan;
-    protected Button buttonVolver;
+    protected Button buttonEntrantes;
+    protected Button buttonPrincipales;
+    protected Button buttonComplementos;
+    protected Button buttonBebidas;
+    protected Button buttonPostres;
+    protected ImageButton buttonAtras;
+    protected ImageButton buttonComandaActual;
+    protected ImageButton buttonCarta;
+    protected ImageButton buttonCamarero;
+    protected ImageButton buttonComandaTotal;
+    protected ImageButton buttonPagar;
 
     private Intent pasarPantalla;
 
@@ -25,15 +30,19 @@ public class MenuPilar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_pilar);
 
-        buttonAgua = (Button) findViewById(R.id.button_agua_menupilar);
-        buttonCola = (Button) findViewById(R.id.button_cocacola_menupilar);
-        buttonHamburguesa = (Button) findViewById(R.id.button_hamburguesa_menupilar);
-        buttonBocata = (Button) findViewById(R.id.button_bocata_menupilar);
-        buttonFlan = (Button) findViewById(R.id.button_flan_menupilar);
-        buttonHelado = (Button) findViewById(R.id.button_helado_menupilar);
-        buttonVolver = (Button) findViewById(R.id.button_volver_menupilar);
+        buttonEntrantes = (Button) findViewById(R.id.button_entrantes_menu);
+        buttonPrincipales = (Button) findViewById(R.id.button_principales_menu);
+        buttonComplementos = (Button) findViewById(R.id.button_complementos_menu);
+        buttonBebidas = (Button) findViewById(R.id.button_bebidas_menu);
+        buttonPostres = (Button) findViewById(R.id.button_postres_menu);
+        buttonAtras = (ImageButton) findViewById(R.id.button_atras_menu);
+        buttonComandaActual = (ImageButton) findViewById(R.id.button_comandaActual_menu);
+        buttonCarta = (ImageButton) findViewById(R.id.button_carta_menu);
+        buttonCamarero = (ImageButton) findViewById(R.id.button_camarero_menu);
+        buttonComandaTotal = (ImageButton) findViewById(R.id.button_comandaTotal_menu);
+        buttonPagar = (ImageButton) findViewById(R.id.button_pagar_menu);
 
-        buttonAgua.setOnClickListener(new View.OnClickListener() {
+        buttonEntrantes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -42,7 +51,7 @@ public class MenuPilar extends AppCompatActivity {
             }
         });
 
-        buttonCola.setOnClickListener(new View.OnClickListener() {
+        buttonPrincipales.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -51,7 +60,7 @@ public class MenuPilar extends AppCompatActivity {
             }
         });
 
-        buttonHamburguesa.setOnClickListener(new View.OnClickListener() {
+        buttonComplementos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -60,7 +69,7 @@ public class MenuPilar extends AppCompatActivity {
             }
         });
 
-        buttonBocata.setOnClickListener(new View.OnClickListener() {
+        buttonPostres.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -69,7 +78,7 @@ public class MenuPilar extends AppCompatActivity {
             }
         });
 
-        buttonFlan.setOnClickListener(new View.OnClickListener() {
+        buttonBebidas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -78,20 +87,13 @@ public class MenuPilar extends AppCompatActivity {
             }
         });
 
-        buttonHelado.setOnClickListener(new View.OnClickListener() {
+
+        buttonAtras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(MenuPilar.this, "Flan añadido a la comanda", Toast.LENGTH_SHORT).show();
+                pasarPantalla = new Intent(MenuPilar.this, CodigoRestaurante.class);
 
-            }
-        });
-
-        buttonVolver.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                pasarPantalla = new Intent(MenuPilar.this, RestauranteActivity.class);
                 finish();
                 startActivity(pasarPantalla);
 

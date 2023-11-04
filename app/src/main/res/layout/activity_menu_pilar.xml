@@ -7,73 +7,127 @@
     android:background="#FFFDF3"
     tools:context=".MenuPilar">
 
-    <Button
-        android:id="@+id/button_volver_menupilar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
-        android:text="Volver"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="325dp"
         android:layout_height="530dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="24dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/button_volver_menupilar"
+        app:layout_constraintBottom_toTopOf="@+id/button_camarero_menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/image_restaurante_menu">
 
         <Button
-            android:id="@+id/button_agua_menupilar"
+            android:id="@+id/button_entrantes_menu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#1E1D40"
-            android:text="Agua" />
+            android:text="Entrantes" />
 
         <Button
-            android:id="@+id/button_cocacola_menupilar"
+            android:id="@+id/button_principales_menu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#1E1D40"
-            android:text="Cocacola" />
+            android:text="Principales" />
 
         <Button
-            android:id="@+id/button_hamburguesa_menupilar"
+            android:id="@+id/button_complementos_menu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#1B65AB"
-            android:text="Hamburguesa" />
+            android:backgroundTint="#1E1D40"
+            android:text="Complementos" />
 
         <Button
-            android:id="@+id/button_bocata_menupilar"
+            android:id="@+id/button_bebidas_menu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#1B65AB"
-            android:text="Bocata" />
+            android:backgroundTint="#1E1D40"
+            android:text="Bebidas" />
 
         <Button
-            android:id="@+id/button_helado_menupilar"
+            android:id="@+id/button_postres_menu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#D90D32"
-            android:text="Helado" />
-
-        <Button
-            android:id="@+id/button_flan_menupilar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#D90D32"
-            android:text="Flan" />
+            android:backgroundTint="#1E1D40"
+            android:text="Postres" />
 
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/button_atras_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?attr/actionModeCloseDrawable" />
+
+    <ImageButton
+        android:id="@+id/button_comandaActual_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/btn_star_big_off" />
+
+    <ImageButton
+        android:id="@+id/button_carta_menu"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/menu" />
+
+    <ImageView
+        android:id="@+id/image_restaurante_menu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/button_comandaActual_menu"
+        app:layout_constraintStart_toEndOf="@+id/button_atras_menu"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/bottom_bar" />
+
+    <ImageButton
+        android:id="@+id/button_camarero_menu"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_comandaTotal_menu"
+        app:layout_constraintStart_toEndOf="@+id/button_carta_menu"
+        app:srcCompat="@drawable/camarero" />
+
+    <ImageButton
+        android:id="@+id/button_pagar_menu"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/pagar" />
+
+    <ImageButton
+        android:id="@+id/button_comandaTotal_menu"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_pagar_menu"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
 </androidx.constraintlayout.widget.ConstraintLayout>
