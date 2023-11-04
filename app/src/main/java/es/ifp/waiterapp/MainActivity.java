@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                pasarPantalla = new Intent(MainActivity.this, ListadoRestaurantes.class);
+                pasarPantalla = new Intent(MainActivity.this, InicioSesion.class);
                 finish();
                 startActivity(pasarPantalla);
 
