@@ -109,6 +109,6 @@ public class Restaurante {
     public void setCodigoRestaurante(String codigoRestaurante) {
         this.codigoRestaurante = codigoRestaurante;
     }
-    
+
 
 }

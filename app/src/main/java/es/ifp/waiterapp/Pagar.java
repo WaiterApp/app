@@ -4,7 +4,6 @@ package es.ifp.waiterapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -55,7 +54,7 @@ public class Pagar extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                pasarPantalla = new Intent(Pagar.this, RestaurantePilar.class);
+                pasarPantalla = new Intent(Pagar.this, RestauranteActivity.class);
                 finish();
                 startActivity(pasarPantalla);
 

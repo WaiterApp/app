@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-public class RestaurantePilar extends AppCompatActivity {
+public class RestauranteActivity extends AppCompatActivity {
 
     protected ImageButton buttonMenu;
     protected ImageButton buttonCamarero;
@@ -19,7 +19,7 @@ public class RestaurantePilar extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_restaurante_pilar);
+        setContentView(R.layout.activity_restaurante);
 
         buttonMenu = (ImageButton) findViewById(R.id.imageButton_menu_pilar);
         buttonCamarero = (ImageButton) findViewById(R.id.imageButton_camarero_pilar);
@@ -29,7 +29,7 @@ public class RestaurantePilar extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                pasarPantalla = new Intent(RestaurantePilar.this, MenuPilar.class);
+                pasarPantalla = new Intent(RestauranteActivity.this, MenuPilar.class);
                 finish();
                 startActivity(pasarPantalla);
 
@@ -40,7 +40,7 @@ public class RestaurantePilar extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(RestaurantePilar.this, "Un camarero acudirá a la mesa lo antes posible", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RestauranteActivity.this, "Un camarero acudirá a la mesa lo antes posible", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -50,7 +50,7 @@ public class RestaurantePilar extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                pasarPantalla = new Intent(RestaurantePilar.this, Pagar.class);
+                pasarPantalla = new Intent(RestauranteActivity.this, Pagar.class);
                 finish();
                 startActivity(pasarPantalla);
 

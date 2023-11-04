@@ -91,7 +91,7 @@ public class MenuPilar extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                pasarPantalla = new Intent(MenuPilar.this, RestaurantePilar.class);
+                pasarPantalla = new Intent(MenuPilar.this, RestauranteActivity.class);
                 finish();
                 startActivity(pasarPantalla);
 

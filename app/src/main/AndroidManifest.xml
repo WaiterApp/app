@@ -23,7 +23,7 @@
             android:name=".CodigoRestaurante"
             android:exported="false" />
         <activity
-            android:name=".RestaurantePilar"
+            android:name=".RestauranteActivity"
             android:exported="false" />
         <activity
             android:name=".ListadoRestaurantes"
