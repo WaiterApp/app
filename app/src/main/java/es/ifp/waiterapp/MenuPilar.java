@@ -93,6 +93,7 @@ public class MenuPilar extends AppCompatActivity {
             public void onClick(View view) {
 
                 pasarPantalla = new Intent(MenuPilar.this, CodigoRestaurante.class);
+
                 finish();
                 startActivity(pasarPantalla);
 

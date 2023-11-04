@@ -12,22 +12,21 @@ import java.util.TimerTask;
 public class MainActivity extends AppCompatActivity {
 
     protected ImageView image1;
-
     private Intent pasarPantalla;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        image1 = (ImageView) findViewById(R.id.image1_main);
+        image1 = findViewById(R.id.image1_main);
 
         TimerTask tt = new TimerTask() {
             @Override
             public void run() {
-
+               
                 pasarPantalla = new Intent(MainActivity.this, InicioSesion.class);
+
                 finish();
                 startActivity(pasarPantalla);
 
