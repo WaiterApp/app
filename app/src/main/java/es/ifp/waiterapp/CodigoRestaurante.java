@@ -32,7 +32,7 @@ public class CodigoRestaurante extends AppCompatActivity {
     private String codigoRestaurante;
     private String mesa;
     protected Restaurante restaurante;
-    protected ArrayList<Restaurante> restaurantes;
+    protected ArrayList<Restaurante> restaurantes = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,15 +59,15 @@ public class CodigoRestaurante extends AppCompatActivity {
                         try {
                             // Crear JSON array con la respuesta del servidor
                             JSONArray jsonArray = new JSONArray(response);
-                            // Instanciar restaurante
-                            restaurante = new Restaurante();
 
                             // Iterar por cada elemento del array
                             for(int i=0;i<jsonArray.length();i++){
+                                // Instanciar restaurante
+                                restaurante = new Restaurante();
                                 // Obtener un jsonobject de cada elemento del array
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                                restaurante.setIdRestaurante(jsonObject.getInt("id")); // Asignar el id al atributo idRestaurante del objeto restaurante
+                                restaurante.setIdRestaurante(jsonObject.getInt("id_restaurante")); // Asignar el id al atributo idRestaurante del objeto restaurante
                                 restaurante.setNombre(jsonObject.getString("nombre")); // Asignar el nombre al atributo nombre del objeto restaurante
                                 restaurante.setDireccion(jsonObject.getString("direccion")); // Etc ...
                                 restaurante.setCodigoPostal(jsonObject.getInt("codigo_postal"));
@@ -101,21 +101,22 @@ public class CodigoRestaurante extends AppCompatActivity {
             public void onClick(View view) {
 
                 codigoRestaurante = boxCodigo.getText().toString();
+                boolean coincidencia = false;
 
                 for (Restaurante restaurante : restaurantes)
                 {
                     if (codigoRestaurante.equalsIgnoreCase(restaurante.getCodigoRestaurante())) {
-
+                        coincidencia = true;
                         pasarPantalla = new Intent(CodigoRestaurante.this, RestauranteActivity.class);
                         finish();
                         startActivity(pasarPantalla);
-
-                    } else {
-                        Toast.makeText(CodigoRestaurante.this, "Código de restaurante erróneo", Toast.LENGTH_SHORT).show();
+                        break;
                     }
 
                 }
-
+                if (!coincidencia){
+                    Toast.makeText(CodigoRestaurante.this, "Código de restaurante erróneo", Toast.LENGTH_SHORT).show();
+                }
 
             }
 
