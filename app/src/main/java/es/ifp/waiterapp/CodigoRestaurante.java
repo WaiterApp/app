@@ -12,15 +12,10 @@ import android.widget.Toast;
 
 public class CodigoRestaurante extends AppCompatActivity {
 
-    protected EditText boxCodigo;
-    protected EditText boxMesa;
-
-    protected ImageButton buttonInfo;
+    protected EditText boxCodigo, boxMesa;
+    protected ImageButton buttonInfo, buttonQR;
     protected Button buttonEntrar;
-    protected ImageButton buttonQR;
-
     private Intent pasarPantalla;
-
     private String codigoRestaurante;
     private String mesa;
 
@@ -29,12 +24,12 @@ public class CodigoRestaurante extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_codigo_restaurante);
 
-        boxCodigo = (EditText) findViewById(R.id.box_codigo_codigoactivity);
-        boxMesa = (EditText)  findViewById(R.id.box_mesa_codigoactivity);
+        boxCodigo = findViewById(R.id.box_codigo_codigoactivity);
+        boxMesa = findViewById(R.id.box_mesa_codigoactivity);
 
-        buttonInfo = (ImageButton) findViewById(R.id.button_info_codigoactivity);
-        buttonEntrar = (Button) findViewById(R.id.button_entrar_codigoactivity);
-        buttonQR = (ImageButton) findViewById(R.id.button_qr_codigoactivity);
+        buttonInfo = findViewById(R.id.button_info_codigoactivity);
+        buttonEntrar = findViewById(R.id.button_entrar_codigoactivity);
+        buttonQR = findViewById(R.id.button_qr_codigoactivity);
 
         buttonEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
