@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -63,7 +64,11 @@ public class InicioSesion extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                iniciarSesion();
+                if((box_usuario.getText().toString()).equalsIgnoreCase("")){
+                    Toast.makeText(InicioSesion.this, "Introduzca un email", Toast.LENGTH_SHORT).show();
+                } else {
+                    iniciarSesion();
+                }
 
             }
         });
@@ -80,7 +85,7 @@ public class InicioSesion extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
 
         // Crear un StringRequest para hacer la solicitud POST al servidor
-        StringRequest string = new StringRequest(Request.Method.POST, Constantes.URL_INICIO_SESION,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constantes.URL_INICIO_SESION,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -117,6 +122,8 @@ public class InicioSesion extends AppCompatActivity {
                 return params;
             }
         };
+        // Add the request to the RequestQueue
+        queue.add(stringRequest);
     }
 
 }
