@@ -7,6 +7,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class InicioSesion extends AppCompatActivity {
 
@@ -48,6 +59,64 @@ public class InicioSesion extends AppCompatActivity {
             }
         });
 
+        btn_inicioS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                iniciarSesion();
+
+            }
+        });
+
+    }
+
+    public void iniciarSesion()
+    {
+        // Obtener el correo y la contraseña de las cajas EditText
+        final String EMAIL = box_usuario.getText().toString().trim();
+        final String CONTRASENA = box_contrasena.getText().toString().trim();
+
+        // Crear la RequestQueue con Volley
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+
+        // Crear un StringRequest para hacer la solicitud POST al servidor
+        StringRequest string = new StringRequest(Request.Method.POST, Constantes.URL_INICIO_SESION,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Gestionar la respuesta del servidor
+                        if (response.equals("Acceso Denegado")) {
+                            // Fallo en el inicio de sesión, informar con un error
+                            Toast.makeText(InicioSesion.this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+                        } else if (response.equals("Usuario no registrado")) {
+                            // El usuario no existe en la base de datos
+                            Toast.makeText(InicioSesion.this, "El correo indicado no está registrado", Toast.LENGTH_SHORT).show();
+                        } else {
+                            // Inicio de sesión exitoso, ir a la siguente actividad
+                            pasarPantalla = new Intent(InicioSesion.this, CodigoRestaurante.class);
+                            finish();
+                            startActivity(pasarPantalla);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // Gestionar error
+                        Toast.makeText(InicioSesion.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                // configurar los parámetros POST (EMAIL y contrasena) que se enviaran al servidor
+                Map<String, String> params = new HashMap<>();
+                params.put("email", EMAIL);
+                params.put("contrasena", CONTRASENA);
+                return params;
+            }
+        };
     }
 
 }
