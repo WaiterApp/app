@@ -4,12 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class InicioSesion extends AppCompatActivity {
+public class LidiaPrueba extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inicio_sesion);
-
+        setContentView(R.layout.activity_lidia_prueba);
     }
 }
