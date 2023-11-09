@@ -82,7 +82,7 @@ public class InicioSesion extends AppCompatActivity {
         final String CONTRASENA = box_contrasena.getText().toString().trim();
 
         // Crear la RequestQueue con Volley
-        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        RequestQueue queue = MySingleton.getInstance(this.getApplicationContext()).getRequestQueue();
 
         // Crear un StringRequest para hacer la solicitud POST al servidor
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Constantes.URL_INICIO_SESION,
@@ -90,17 +90,21 @@ public class InicioSesion extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         // Gestionar la respuesta del servidor
-                        if (response.equals("Acceso Denegado")) {
+                        Toast.makeText(InicioSesion.this, response.toString(), Toast.LENGTH_SHORT).show();
+                        if (response.toString().equals("403")) {
                             // Fallo en el inicio de sesión, informar con un error
                             Toast.makeText(InicioSesion.this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
-                        } else if (response.equals("Usuario no registrado")) {
+                        } else if (response.toString().equals("401")) {
                             // El usuario no existe en la base de datos
                             Toast.makeText(InicioSesion.this, "El correo indicado no está registrado", Toast.LENGTH_SHORT).show();
-                        } else {
+                        } else if (response.toString().equals("200")) {
                             // Inicio de sesión exitoso, ir a la siguente actividad
                             pasarPantalla = new Intent(InicioSesion.this, CodigoRestaurante.class);
                             finish();
                             startActivity(pasarPantalla);
+                        } else {
+                            // El usuario no existe en la base de datos
+                            Toast.makeText(InicioSesion.this, "Se ha producido un error, inténtelo de nuevo mas tarde", Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
@@ -122,8 +126,10 @@ public class InicioSesion extends AppCompatActivity {
                 return params;
             }
         };
+        // Desactivar almacenamiento en caché
+        stringRequest.setShouldCache(false);
         // Add the request to the RequestQueue
-        queue.add(stringRequest);
+        MySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 
 }

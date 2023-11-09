@@ -20,6 +20,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Registro extends AppCompatActivity {
 
     private EditText box_nombre, box_apellidos, box_email, box_telefono, box_contrasena, box_confContra;
@@ -54,7 +57,13 @@ public class Registro extends AppCompatActivity {
         btn_registro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registrarUsuario();
+                // Verificar si las contraseñas coinciden
+                if(box_contrasena.getText().toString().equals(box_confContra.getText().toString()))
+                {
+                    registrarUsuario();
+                } else {
+                    Toast.makeText(Registro.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -62,38 +71,66 @@ public class Registro extends AppCompatActivity {
 
     public void registrarUsuario()
     {
+
+
+        // Parámetros
+        String email = box_email.getText().toString().trim();
+        String contrasena = box_contrasena.getText().toString();
+        String nombre = box_nombre.getText().toString();
+        String apellidos = box_apellidos.getText().toString();
+        String telefono = box_telefono.getText().toString();
+
         // Instanciar el RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+        RequestQueue queue = MySingleton.getInstance(this.getApplicationContext()).getRequestQueue();
         // URL de nuestro servidor 000webhost
-        String url = Constantes.URL_READ_RESTAURANTE;
+        String url = Constantes.URL_ALTA_USUARIO;
 
         // Solicitar respuesta de tipo String de la URL proporcionada.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        try {
-                            // Crear JSON array con la respuesta del servidor
-                            JSONArray jsonArray = new JSONArray(response);
+                        // Obtener respuesta y verificar exito en registro
 
-                            // Iterar por cada elemento del array
-                            for(int i=0;i<jsonArray.length();i++){
+                        String respuesta = response.toString();
 
-                            }
-                        } catch (JSONException e) {
-                            throw new RuntimeException(e);
+                        Toast.makeText(Registro.this, respuesta, Toast.LENGTH_SHORT).show();
+
+                        if(respuesta.equals("Registro exitoso"))
+                        {
+                            pasarPantalla = new Intent(Registro.this, CodigoRestaurante.class);
+                            finish();
+                            startActivity(pasarPantalla);
+                        } else if (respuesta.equals("Fallo en el registro")){
+                            Toast.makeText(Registro.this, "Intentelo de nuevo mas tarde", Toast.LENGTH_SHORT).show();
                         }
 
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(Registro.this, "****", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Registro.this, error.toString(), Toast.LENGTH_SHORT).show();
             }
-        });
+        }){
+            @Override
+            protected Map<String, String> getParams()
+            {
+                // configurar los parámetros POST (EMAIL y contrasena) que se enviaran al servidor
+                Map<String, String> params = new HashMap<>();
+                params.put("email", email);
+                params.put("contrasena", contrasena);
+                params.put("nombre", nombre);
+                params.put("apellidos", apellidos);
+                params.put("telefono", telefono);
+                return params;
+            }
+        };
 
+        // Desactivar almacenamiento en caché
+        stringRequest.setShouldCache(false);
         // Añadir request a la RequestQueue.
-        queue.add(stringRequest);
+        MySingleton.getInstance(this).addToRequestQueue(stringRequest);
+
 
     }
 }
