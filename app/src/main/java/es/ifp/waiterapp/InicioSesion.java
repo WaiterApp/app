@@ -63,9 +63,11 @@ public class InicioSesion extends AppCompatActivity {
         btn_inicioS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                // Verificar que las cajas no estén vacías
                 if((box_usuario.getText().toString()).equalsIgnoreCase("")){
                     Toast.makeText(InicioSesion.this, "Introduzca un email", Toast.LENGTH_SHORT).show();
+                } else if ((box_contrasena.getText().toString()).equalsIgnoreCase("")) {
+                    Toast.makeText(InicioSesion.this, "Introduzca una contraseña", Toast.LENGTH_SHORT).show();
                 } else {
                     iniciarSesion();
                 }
@@ -90,7 +92,6 @@ public class InicioSesion extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         // Gestionar la respuesta del servidor
-                        Toast.makeText(InicioSesion.this, response.toString(), Toast.LENGTH_SHORT).show();
                         if (response.toString().equals("403")) {
                             // Fallo en el inicio de sesión, informar con un error
                             Toast.makeText(InicioSesion.this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
