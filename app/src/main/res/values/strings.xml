@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Waiterapp</string>
+    <!-- InicioSesion -->
+    <string name="cd_logo_InicioSesion">Logo WAITERAPP</string>
+    <string name="hint_usuario_InicioSesion">Usuario</string>
+    <string name="hint_contrasena_InicioSesion">Contraseña</string>
+    <string name="btn_inicio_InicioSesion">Inicia sesión</string>
+    <string name="lbl_huella_InicioSesion">Inicia sesión con huella</string>
+    <string name="cd_huella_InicioSesion">Icono de huella dactilar</string>
+    <string name="btn_registro_InicioSesion">Regístrate</string>
+    <string name="btn_continuar_InicioSesion">Continuar sin iniciar sesión</string>
+    <!-- Registro -->
+    <string name="hint_nombre_Registro">Nombre</string>
+    <string name="hint_apellidos_Registro">Apellidos</string>
+    <string name="hint_email_Registro">Email</string>
+    <string name="hint_telefono_Registro">Telefono</string>
+    <string name="hint_contrasena_Registro">Contraseña</string>
+    <string name="hint_confContrasena_Registro">Confirmar contraseña</string>
+    <string name="btn_registro_Registro">Confirmar datos</string>
+    <string name="btn_volver_Registro">Volver</string>
+
 </resources>

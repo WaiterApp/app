@@ -9,11 +9,12 @@
     <EditText
         android:id="@+id/box_usuario_iniciosesion"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="32dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Usuario"
+        android:hint="@string/hint_usuario_InicioSesion"
+        android:autofillHints="emailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,6 +26,7 @@
         android:layout_height="100dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:contentDescription="@string/cd_logo_InicioSesion"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_transparente" />
@@ -32,11 +34,12 @@
     <EditText
         android:id="@+id/box_contrasena_iniciosesion"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Contraseña"
+        android:inputType="textPassword"
+        android:hint="@string/hint_contrasena_InicioSesion"
+        android:autofillHints="password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/box_usuario_iniciosesion" />
@@ -46,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Inicia sesión"
+        android:text="@string/btn_inicio_InicioSesion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/box_contrasena_iniciosesion" />
@@ -56,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Inicia sesión con huella"
+        android:text="@string/lbl_huella_InicioSesion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_incia_iniciosesion" />
@@ -66,6 +69,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
+        android:contentDescription="@string/cd_huella_InicioSesion"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toEndOf="@+id/text_huella_iniciosesion"
         app:layout_constraintTop_toBottomOf="@+id/button_incia_iniciosesion"
@@ -76,7 +80,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="64dp"
-        android:text="Continuar sin iniciar sesion"
+        android:text="@string/btn_continuar_InicioSesion"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -86,7 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="45dp"
-        android:text="Regístrate"
+        android:text="@string/btn_registro_InicioSesion"
         app:layout_constraintBottom_toTopOf="@+id/button_noinicio_iniciosesion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

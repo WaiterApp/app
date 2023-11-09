@@ -47,9 +47,9 @@ public class CodigoRestaurante extends AppCompatActivity {
         buttonQR = findViewById(R.id.button_qr_codigoactivity);
 
         // Instanciar el RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-        // String url ="http://192.168.1.133/App2/read.php"; //localhost XAMPP
-        String url = "https://waiterappsite.000webhostapp.com//readRestaurante.php"; // 000webhost
+        RequestQueue queue = MySingleton.getInstance(this.getApplicationContext()).getRequestQueue();
+        // URL de nuestro servidor 000webhost
+        String url = Constantes.URL_READ_RESTAURANTE;
 
         // Solicitar respuesta de tipo String de la URL proporcionada.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -94,7 +94,7 @@ public class CodigoRestaurante extends AppCompatActivity {
         });
 
         // Añadir request a la RequestQueue.
-        queue.add(stringRequest);
+        MySingleton.getInstance(this).addToRequestQueue(stringRequest);
 
         buttonEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
