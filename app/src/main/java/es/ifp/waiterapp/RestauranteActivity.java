@@ -21,9 +21,9 @@ public class RestauranteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurante);
 
-        buttonMenu = (ImageButton) findViewById(R.id.imageButton_menu_pilar);
-        buttonCamarero = (ImageButton) findViewById(R.id.imageButton_camarero_pilar);
-        buttonPagar = (ImageButton) findViewById(R.id.imageButton_pagar_pilar);
+        buttonMenu = (ImageButton) findViewById(R.id.imageButton_menu_RestActivity);
+        buttonCamarero = (ImageButton) findViewById(R.id.imageButton_camarero_RestActivity);
+        buttonPagar = (ImageButton) findViewById(R.id.imageButton_pagar_RestActivity);
 
         buttonMenu.setOnClickListener(new View.OnClickListener() {
             @Override
