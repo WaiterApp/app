@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-public class MenuPilar extends AppCompatActivity {
+public class CartaActivity extends AppCompatActivity {
 
     protected Button buttonEntrantes;
     protected Button buttonPrincipales;
@@ -28,7 +28,7 @@ public class MenuPilar extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_pilar);
+        setContentView(R.layout.activity_carta);
 
         buttonEntrantes = (Button) findViewById(R.id.button_entrantes_menu);
         buttonPrincipales = (Button) findViewById(R.id.button_principales_menu);
@@ -46,7 +46,7 @@ public class MenuPilar extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(MenuPilar.this, "Agua añadida a la comanda", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CartaActivity.this, "Agua añadida a la comanda", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -55,7 +55,7 @@ public class MenuPilar extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(MenuPilar.this, "Cocacola añadida a la comanda", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CartaActivity.this, "Cocacola añadida a la comanda", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -64,7 +64,7 @@ public class MenuPilar extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(MenuPilar.this, "Hamburguesa añadida a la comanda", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CartaActivity.this, "Hamburguesa añadida a la comanda", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -73,7 +73,7 @@ public class MenuPilar extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(MenuPilar.this, "Bocata añadido a la comanda", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CartaActivity.this, "Bocata añadido a la comanda", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -82,7 +82,7 @@ public class MenuPilar extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(MenuPilar.this, "Flan añadido a la comanda", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CartaActivity.this, "Flan añadido a la comanda", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -92,7 +92,7 @@ public class MenuPilar extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                pasarPantalla = new Intent(MenuPilar.this, CodigoRestaurante.class);
+                pasarPantalla = new Intent(CartaActivity.this, CodigoRestaurante.class);
 
                 finish();
                 startActivity(pasarPantalla);

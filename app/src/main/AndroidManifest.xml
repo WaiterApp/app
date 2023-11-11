@@ -20,7 +20,7 @@
             android:name=".InicioSesion"
             android:exported="false" />
         <activity
-            android:name=".MenuPilar"
+            android:name=".CartaActivity"
             android:exported="false" />
         <activity
             android:name=".RestauranteActivity"
