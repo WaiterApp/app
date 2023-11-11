@@ -8,45 +8,45 @@
     tools:context=".RestauranteActivity">
 
     <TextView
-        android:id="@+id/text_camarero"
+        android:id="@+id/text_camarero_RestActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Avisar a un camarero"
         android:textColor="#000000"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton_camarero_pilar"
+        app:layout_constraintEnd_toEndOf="@+id/imageButton_camarero_RestActivity"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="@+id/imageButton_camarero_pilar"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton_camarero_pilar" />
+        app:layout_constraintStart_toStartOf="@+id/imageButton_camarero_RestActivity"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton_camarero_RestActivity" />
 
     <TextView
-        android:id="@+id/text_carta"
+        android:id="@+id/text_carta_RestActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Ver la carta"
         android:textColor="#000000"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton_menu_pilar"
+        app:layout_constraintEnd_toEndOf="@+id/imageButton_menu_RestActivity"
         app:layout_constraintHorizontal_bias="0.525"
-        app:layout_constraintStart_toStartOf="@+id/imageButton_menu_pilar"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton_menu_pilar" />
+        app:layout_constraintStart_toStartOf="@+id/imageButton_menu_RestActivity"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton_menu_RestActivity" />
 
     <TextView
-        android:id="@+id/text_pagar"
+        android:id="@+id/text_pagar_RestActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Pagar"
         android:textColor="#000000"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageButton_pagar_pilar"
-        app:layout_constraintStart_toStartOf="@+id/imageButton_pagar_pilar"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton_pagar_pilar" />
+        app:layout_constraintEnd_toEndOf="@+id/imageButton_pagar_RestActivity"
+        app:layout_constraintStart_toStartOf="@+id/imageButton_pagar_RestActivity"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton_pagar_RestActivity" />
 
     <TextView
-        android:id="@+id/text_pilar"
+        android:id="@+id/text_nombreRestaurante_RestActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -60,35 +60,35 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton_menu_pilar"
+        android:id="@+id/imageButton_menu_RestActivity"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="50dp"
         android:background="#4AB0D9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_pilar"
+        app:layout_constraintTop_toBottomOf="@+id/text_nombreRestaurante_RestActivity"
         app:srcCompat="@drawable/menu" />
 
     <ImageButton
-        android:id="@+id/imageButton_camarero_pilar"
+        android:id="@+id/imageButton_camarero_RestActivity"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="32dp"
         android:background="#4AB0D9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_carta"
+        app:layout_constraintTop_toBottomOf="@+id/text_carta_RestActivity"
         app:srcCompat="@drawable/camarero" />
 
     <ImageButton
-        android:id="@+id/imageButton_pagar_pilar"
+        android:id="@+id/imageButton_pagar_RestActivity"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="32dp"
         android:background="#4AB0D9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_camarero"
+        app:layout_constraintTop_toBottomOf="@+id/text_camarero_RestActivity"
         app:srcCompat="@drawable/pagar" />
 </androidx.constraintlayout.widget.ConstraintLayout>
