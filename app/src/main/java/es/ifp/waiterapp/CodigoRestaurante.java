@@ -17,7 +17,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -34,7 +33,7 @@ public class CodigoRestaurante extends AppCompatActivity {
     private String mesa;
     //protected Restaurante restaurante;
     //protected ArrayList<Restaurante> restaurantes = new ArrayList<>();
-    private int id_restaurante=0;
+    private int idRestaurante =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,11 +110,11 @@ public class CodigoRestaurante extends AppCompatActivity {
 
                             if(jsonObject.getInt("codigo")==200){
                                 Toast.makeText(CodigoRestaurante.this, jsonObject.getString("mensaje"), Toast.LENGTH_SHORT).show();
-                                id_restaurante = jsonObject.getInt("id_restaurante");
+                                idRestaurante = jsonObject.getInt("id_restaurante");
                                 // Si es válido, devolverá un id distinto de 0. Pasar a la siguiente pantalla
-                                if (id_restaurante!=0) {
+                                if (idRestaurante !=0) {
                                     pasarPantalla = new Intent(CodigoRestaurante.this, RestauranteActivity.class);
-                                    pasarPantalla.putExtra("id_rest", id_restaurante);
+                                    pasarPantalla.putExtra("id_rest", idRestaurante);
                                     finish();
                                     startActivity(pasarPantalla);
                                 }

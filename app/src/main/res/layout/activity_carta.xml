@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFDF3"
-    tools:context=".MenuPilar">
+    tools:context=".CartaActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"

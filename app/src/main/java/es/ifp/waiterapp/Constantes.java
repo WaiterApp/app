@@ -5,4 +5,5 @@ public class Constantes {
     public static final String URL_CODIGO_RESTAURANTE = ROOT_URL+"codigoRestaurante.php";
     public static final String URL_INICIO_SESION = ROOT_URL+"autenticacion.php";
     public static final String URL_ALTA_USUARIO = ROOT_URL+"altaUsuario.php";
+    public static final String URL_LEER_RESTAURANTE = ROOT_URL+"readRestaurante.php";
 }

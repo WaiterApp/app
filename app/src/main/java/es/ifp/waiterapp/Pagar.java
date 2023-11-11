@@ -18,16 +18,23 @@ public class Pagar extends AppCompatActivity {
     protected Button buttonVolver;
 
     private Intent pasarPantalla;
+    private Bundle extras;
+    private int idRestaurante;
+    private String nombreRestaurante;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pagar);
 
-        buttonApp = (ImageButton) findViewById(R.id.imageButton_app_pagar);
-        buttonTarjeta = (ImageButton) findViewById(R.id.imageButton_tarjeta_pagar);
-        buttonEfectivo = (ImageButton) findViewById(R.id.imageButton_efectivo_pagar);
-        buttonVolver = (Button) findViewById(R.id.button_volver_pagar);
+        buttonApp = findViewById(R.id.imageButton_app_pagar);
+        buttonTarjeta = findViewById(R.id.imageButton_tarjeta_pagar);
+        buttonEfectivo = findViewById(R.id.imageButton_efectivo_pagar);
+        buttonVolver = findViewById(R.id.button_volver_pagar);
+
+        extras = getIntent().getExtras();
+        idRestaurante = extras.getInt("id_rest");
+        nombreRestaurante = extras.getString("nombre");
 
         buttonApp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +62,8 @@ public class Pagar extends AppCompatActivity {
             public void onClick(View view) {
 
                 pasarPantalla = new Intent(Pagar.this, RestauranteActivity.class);
+                pasarPantalla.putExtra("id_rest", idRestaurante);
+                pasarPantalla.putExtra("nombre", nombreRestaurante);
                 finish();
                 startActivity(pasarPantalla);
 
