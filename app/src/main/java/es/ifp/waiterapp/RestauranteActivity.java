@@ -16,15 +16,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
-
 public class RestauranteActivity extends AppCompatActivity {
 
-    protected ImageButton buttonMenu, buttonCamarero, buttonPagar;
+    protected ImageButton buttonCarta, buttonCamarero, buttonPagar;
     protected TextView lblNombreRestaurante;
     private Intent pasarPantalla;
     private Bundle extras;
@@ -37,21 +31,29 @@ public class RestauranteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_restaurante);
 
         lblNombreRestaurante = findViewById(R.id.text_nombreRestaurante_RestActivity);
-        buttonMenu = (ImageButton) findViewById(R.id.imageButton_menu_RestActivity);
-        buttonCamarero = (ImageButton) findViewById(R.id.imageButton_camarero_RestActivity);
-        buttonPagar = (ImageButton) findViewById(R.id.imageButton_pagar_RestActivity);
+        buttonCarta = findViewById(R.id.imageButton_menu_RestActivity);
+        buttonCamarero = findViewById(R.id.imageButton_camarero_RestActivity);
+        buttonPagar = findViewById(R.id.imageButton_pagar_RestActivity);
 
         extras = getIntent().getExtras();
         idRestaurante = extras.getInt("id_rest");
 
-        obtenerNombreRestaurante();
+        // Comprobar si no existe el parámetro nombre y pedirlo al servidor, de lo contrario tomar el nombre del bundle
+        if(extras.getString("nombre")==null)
+        {
+            obtenerNombreRestaurante();
+        } else {
+            nombreRestaurante = extras.getString("nombre");
+            lblNombreRestaurante.setText(nombreRestaurante);
+        }
 
-        buttonMenu.setOnClickListener(new View.OnClickListener() {
+        buttonCarta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 pasarPantalla = new Intent(RestauranteActivity.this, CartaActivity.class);
                 pasarPantalla.putExtra("id_rest", idRestaurante);
+                pasarPantalla.putExtra("nombre", nombreRestaurante);
                 finish();
                 startActivity(pasarPantalla);
 
@@ -73,6 +75,8 @@ public class RestauranteActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 pasarPantalla = new Intent(RestauranteActivity.this, Pagar.class);
+                pasarPantalla.putExtra("id_rest", idRestaurante);
+                pasarPantalla.putExtra("nombre", nombreRestaurante);
                 finish();
                 startActivity(pasarPantalla);
 
@@ -98,7 +102,7 @@ public class RestauranteActivity extends AppCompatActivity {
                         Log.d("RESPUESTA", response.toString());
 
                         // Modificar la etiqueta para indicar el nombre del restaurante
-                        String nombreRestaurante = response.toString();
+                        nombreRestaurante = response.toString();
                         lblNombreRestaurante.setText(nombreRestaurante);
 
                     }

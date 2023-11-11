@@ -11,36 +11,33 @@ import android.widget.Toast;
 
 public class CartaActivity extends AppCompatActivity {
 
-    protected Button buttonEntrantes;
-    protected Button buttonPrincipales;
-    protected Button buttonComplementos;
-    protected Button buttonBebidas;
-    protected Button buttonPostres;
-    protected ImageButton buttonAtras;
-    protected ImageButton buttonComandaActual;
-    protected ImageButton buttonCarta;
-    protected ImageButton buttonCamarero;
-    protected ImageButton buttonComandaTotal;
-    protected ImageButton buttonPagar;
-
+    protected Button buttonEntrantes, buttonPrincipales, buttonComplementos, buttonBebidas, buttonPostres;
+    protected ImageButton buttonAtras, buttonComandaActual, buttonCarta, buttonCamarero, buttonComandaTotal, buttonPagar;
     private Intent pasarPantalla;
+    private Bundle extras;
+    private int idRestaurante;
+    private String nombreRestaurante;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carta);
 
-        buttonEntrantes = (Button) findViewById(R.id.button_entrantes_menu);
-        buttonPrincipales = (Button) findViewById(R.id.button_principales_menu);
-        buttonComplementos = (Button) findViewById(R.id.button_complementos_menu);
-        buttonBebidas = (Button) findViewById(R.id.button_bebidas_menu);
-        buttonPostres = (Button) findViewById(R.id.button_postres_menu);
-        buttonAtras = (ImageButton) findViewById(R.id.button_atras_menu);
-        buttonComandaActual = (ImageButton) findViewById(R.id.button_comandaActual_menu);
-        buttonCarta = (ImageButton) findViewById(R.id.button_carta_menu);
-        buttonCamarero = (ImageButton) findViewById(R.id.button_camarero_menu);
-        buttonComandaTotal = (ImageButton) findViewById(R.id.button_comandaTotal_menu);
-        buttonPagar = (ImageButton) findViewById(R.id.button_pagar_menu);
+        buttonEntrantes = findViewById(R.id.button_entrantes_menu);
+        buttonPrincipales = findViewById(R.id.button_principales_menu);
+        buttonComplementos = findViewById(R.id.button_complementos_menu);
+        buttonBebidas = findViewById(R.id.button_bebidas_menu);
+        buttonPostres = findViewById(R.id.button_postres_menu);
+        buttonAtras = findViewById(R.id.button_atras_menu);
+        buttonComandaActual = findViewById(R.id.button_comandaActual_menu);
+        buttonCarta = findViewById(R.id.button_carta_menu);
+        buttonCamarero = findViewById(R.id.button_camarero_menu);
+        buttonComandaTotal = findViewById(R.id.button_comandaTotal_menu);
+        buttonPagar = findViewById(R.id.button_pagar_menu);
+
+        extras = getIntent().getExtras();
+        idRestaurante = extras.getInt("id_rest");
+        nombreRestaurante = extras.getString("nombre");
 
         buttonEntrantes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,8 +89,9 @@ public class CartaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                pasarPantalla = new Intent(CartaActivity.this, CodigoRestaurante.class);
-
+                pasarPantalla = new Intent(CartaActivity.this, RestauranteActivity.class);
+                pasarPantalla.putExtra("id_rest", idRestaurante);
+                pasarPantalla.putExtra("nombre", nombreRestaurante);
                 finish();
                 startActivity(pasarPantalla);
 
