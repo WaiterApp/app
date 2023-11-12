@@ -2,7 +2,9 @@ package es.ifp.waiterapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +19,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,6 +31,12 @@ public class InicioSesion extends AppCompatActivity {
     private EditText box_usuario, box_contrasena;
     private Button btn_inicioS, btn_registro, btn_continuarSinS;
     private Intent pasarPantalla;
+    public static final String SHARED_PREFS = "shared_prefs";
+    public static final String EMAIL_KEY = "email_key";
+    public static final String CONTRASENA_KEY = "contrasena_key";
+    public static final String NOMBRE_USUARIO_KEY = "nombreUsuario_key";
+    private SharedPreferences sharedPreferences;
+    private String email, contrasena, nombreUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +50,14 @@ public class InicioSesion extends AppCompatActivity {
         btn_inicioS = findViewById(R.id.button_incia_iniciosesion);
         btn_registro = findViewById(R.id.button_registro_iniciosesion);
         btn_continuarSinS = findViewById(R.id.button_noinicio_iniciosesion);
+
+        // Obtener datos almacenados en shared preferences
+        sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+
+        // En las shared prefs dentro del metodo getString pasamos las keys y el valor por defecto
+        // como null si no está presente
+        email = sharedPreferences.getString("email_key",null);
+        contrasena = sharedPreferences.getString("contrasena_key",null);
 
         // Ir a la actividad Registro
         btn_registro.setOnClickListener(new View.OnClickListener() {
@@ -92,20 +111,36 @@ public class InicioSesion extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         // Gestionar la respuesta del servidor
-                        if (response.toString().equals("403")) {
-                            // Fallo en el inicio de sesión, informar con un error
-                            Toast.makeText(InicioSesion.this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
-                        } else if (response.toString().equals("401")) {
-                            // El usuario no existe en la base de datos
-                            Toast.makeText(InicioSesion.this, "El correo indicado no está registrado", Toast.LENGTH_SHORT).show();
-                        } else if (response.toString().equals("200")) {
-                            // Inicio de sesión exitoso, ir a la siguente actividad
-                            pasarPantalla = new Intent(InicioSesion.this, CodigoRestaurante.class);
-                            finish();
-                            startActivity(pasarPantalla);
-                        } else {
-                            // El usuario no existe en la base de datos
-                            Toast.makeText(InicioSesion.this, "Se ha producido un error, inténtelo de nuevo mas tarde", Toast.LENGTH_SHORT).show();
+                        // Convertir response a JsonObject
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            if (jsonObject.getInt("codigo")==403) {
+                                // Fallo en el inicio de sesión, informar con un error
+                                Toast.makeText(InicioSesion.this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+                            } else if (jsonObject.getInt("codigo")==401) {
+                                // El usuario no existe en la base de datos
+                                Toast.makeText(InicioSesion.this, "El correo indicado no está registrado", Toast.LENGTH_SHORT).show();
+                            } else if (jsonObject.getInt("codigo")==200) {
+                                // Obtener y almacenar el nombre del usuario
+                                nombreUsuario = jsonObject.getString("nombre_usuario");
+                                // Almacenar credenciales en shared prefs
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                // Guardar el correo y la contraseña
+                                editor.putString(EMAIL_KEY, EMAIL);
+                                editor.putString(CONTRASENA_KEY, CONTRASENA);
+                                editor.putString(NOMBRE_USUARIO_KEY, nombreUsuario);
+                                editor.apply();
+
+                                // Inicio de sesión exitoso, ir a la siguente actividad
+                                pasarPantalla = new Intent(InicioSesion.this, CodigoRestaurante.class);
+                                finish();
+                                startActivity(pasarPantalla);
+                            } else {
+                                // El usuario no existe en la base de datos
+                                Toast.makeText(InicioSesion.this, "Se ha producido un error, inténtelo de nuevo mas tarde", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
                         }
                     }
                 },
@@ -133,4 +168,13 @@ public class InicioSesion extends AppCompatActivity {
         MySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 
+    @Override
+    public void onStart(){
+        super.onStart();
+        if (email != null && contrasena != null){
+            pasarPantalla = new Intent(InicioSesion.this, CodigoRestaurante.class);
+            finish();
+            startActivity(pasarPantalla);
+        }
+    }
 }
